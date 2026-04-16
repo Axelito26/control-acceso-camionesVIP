@@ -8,18 +8,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-
-
 //Firebase
 const serviceAccount = require('./firebase-key.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-
 const db = admin.firestore();
 const dashboardRoutes = require('./routes/dashboard')(db);
-
 // 📦 IMPORTAR RUTAS
 const camionesRoutes = require('./routes/camiones')(db);
 const registrosRoutes = require('./routes/registros')(db);
